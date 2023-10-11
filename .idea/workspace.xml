@@ -4,13 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="30ffed03-07ef-48f3-b8f5-17d3f58b7fe7" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Util.java" afterDir="false" />
+    <list default="true" id="30ffed03-07ef-48f3-b8f5-17d3f58b7fe7" name="Changes" comment="Initial commit">
+      <change afterPath="$PROJECT_DIR$/src/main/java/Layer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Network.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Neuron.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Util.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Util.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,8 +56,16 @@
       <updated>1697010894358</updated>
       <workItem from="1697010895848" duration="1373000" />
       <workItem from="1697013699482" duration="95000" />
-      <workItem from="1697013817176" duration="40000" />
+      <workItem from="1697013817176" duration="6088000" />
     </task>
+    <task id="LOCAL-00001" summary="Initial commit">
+      <created>1697014130674</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1697014130674</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -74,5 +81,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Initial commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="Initial commit" />
   </component>
 </project>

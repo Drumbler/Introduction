@@ -8,4 +8,12 @@ public final class Util {
         return sum;
     }
 
+    public static double sigmoid(double x) {
+        return 1.0 / (1.0 + Math.exp(-x));
+    }
+
+    public static double derivativeSigmoid(double x) {
+        double sig = sigmoid(x);
+        return sig * (1.0 - sig);
+    }
 }
