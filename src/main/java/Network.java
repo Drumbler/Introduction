@@ -1,8 +1,8 @@
-import javax.swing.text.html.Option;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.DoubleUnaryOperator;
+import java.util.function.Function;
 
 public class Network<T> {
     private List<Layer> layers = new ArrayList<>();
@@ -52,6 +52,41 @@ public class Network<T> {
             }
         }
     }
-//    дописать 7.11---------------
 
+    public void train(List<double[]> inputs, List<double[]> expecteds) {
+        for (int i = 0; i < inputs.size(); i++) {
+            double[] xs = inputs.get(i);
+            double[] ys = expecteds.get(i);
+            outputs(xs);
+            backPropagate(ys);
+            updateWeights();
+        }
+    }
+
+    public class Results {
+        public final int correct;
+        public final int trials;
+        public final double percentage;
+
+        public Results(int correct, int trials, double percentage) {
+            this.correct = correct;
+            this.trials = trials;
+            this.percentage = percentage;
+        }
+    }
+
+    public Results validate(List<double[]> inputs, List<T> expecteds, Function<double[], T> interpret) {
+        int correct = 0;
+        for (int i = 0; i < inputs.size(); i++) {
+            double[] input = inputs.get(i);
+            T expected = expecteds.get(i);
+            T result = interpret.apply(outputs(input));
+            if (result.equals(expected)) {
+                correct++;
+            }
+
+        }
+        double percentage = (double) correct / (double) inputs.size();
+        return new Results(correct, inputs.size(), percentage);
+    }
 }

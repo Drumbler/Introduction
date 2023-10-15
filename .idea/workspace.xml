@@ -5,10 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="30ffed03-07ef-48f3-b8f5-17d3f58b7fe7" name="Changes" comment="Initial commit">
-      <change afterPath="$PROJECT_DIR$/src/main/java/Layer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Network.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Neuron.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Network.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Util.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Util.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -39,6 +38,7 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.0",
@@ -57,6 +57,9 @@
       <workItem from="1697010895848" duration="1373000" />
       <workItem from="1697013699482" duration="95000" />
       <workItem from="1697013817176" duration="6088000" />
+      <workItem from="1697127131821" duration="1536000" />
+      <workItem from="1697268043764" duration="12000" />
+      <workItem from="1697355871066" duration="2807000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1697014130674</created>
