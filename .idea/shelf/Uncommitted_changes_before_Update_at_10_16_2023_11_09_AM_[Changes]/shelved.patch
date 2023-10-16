@@ -1,0 +1,251 @@
+Index: pom.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project xmlns=\"http://maven.apache.org/POM/4.0.0\"\r\n         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\r\n         xsi:schemaLocation=\"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd\">\r\n    <modelVersion>4.0.0</modelVersion>\r\n\r\n    <groupId>org.example</groupId>\r\n    <artifactId>Introduction</artifactId>\r\n    <version>1.0-SNAPSHOT</version>\r\n\r\n    <properties>\r\n        <maven.compiler.source>17</maven.compiler.source>\r\n        <maven.compiler.target>17</maven.compiler.target>\r\n    </properties>\r\n\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/pom.xml b/pom.xml
+--- a/pom.xml	(revision 141e1a1430d215032421b4de984dc535192f0978)
++++ b/pom.xml	(date 1697360966914)
+@@ -13,4 +13,14 @@
+         <maven.compiler.target>17</maven.compiler.target>
+     </properties>
+ 
++    <dependencies>
++        <dependency>
++            <groupId>junit</groupId>
++            <artifactId>junit</artifactId>
++            <version>4.13.2</version>
++            <scope>test</scope>
++        </dependency>
++
++    </dependencies>
++
+ </project>
+\ No newline at end of file
+Index: src/main/java/Util.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import java.io.BufferedReader;\r\nimport java.io.IOException;\r\nimport java.io.InputStream;\r\nimport java.io.InputStreamReader;\r\nimport java.nio.Buffer;\r\nimport java.util.ArrayList;\r\nimport java.util.Arrays;\r\nimport java.util.Collections;\r\nimport java.util.List;\r\nimport java.util.stream.Collectors;\r\n\r\npublic final class Util {\r\n\r\n    public static double dotProduct(double[] xs, double[] ys) {\r\n        double sum = 0.0;\r\n        for (int i = 0; i < xs.length; i++) {\r\n            sum += xs[i] * ys[i];\r\n        }\r\n        return sum;\r\n    }\r\n\r\n    public static double sigmoid(double x) {\r\n        return 1.0 / (1.0 + Math.exp(-x));\r\n    }\r\n\r\n    public static double derivativeSigmoid(double x) {\r\n        double sig = sigmoid(x);\r\n        return sig * (1.0 - sig);\r\n    }\r\n\r\n    public static void normalizeByFeatureScaling(List<double[]> dataset) {\r\n        for (int colNum = 0; colNum < dataset.get(0).length; colNum++) {\r\n            List<Double> column = new ArrayList<>();\r\n            for (double[] row : dataset) {\r\n                column.add(row[colNum]);\r\n            }\r\n            double maximum = Collections.max(column);\r\n            double minimum = Collections.min(column);\r\n            double difference = maximum - minimum;\r\n            for (double[] row : dataset) {\r\n                row[colNum] = (row[colNum] - minimum) / difference;\r\n            }\r\n        }\r\n    }\r\n    public static List<String[]> loadCSV(String filename) {\r\n        try (InputStream inputStream = Util.class.getResourceAsStream(filename)) {\r\n            InputStreamReader inputStreamReader = new InputStreamReader(inputStream);\r\n            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);\r\n            return bufferedReader.lines().map(line -> line.split(\",\")).collect(Collectors.toList());\r\n        }\r\n        catch (IOException e) {\r\n            e.printStackTrace();\r\n            throw new RuntimeException(e.getMessage(), e);\r\n        }\r\n    }\r\n    public static double max(double[] numbers) {\r\n        return Arrays.stream(numbers).max().orElse(Double.MIN_VALUE);\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/Util.java b/src/main/java/Util.java
+--- a/src/main/java/Util.java	(revision 141e1a1430d215032421b4de984dc535192f0978)
++++ b/src/main/java/Util.java	(date 1697361115904)
+@@ -27,33 +27,35 @@
+         double sig = sigmoid(x);
+         return sig * (1.0 - sig);
+     }
+-
+-    public static void normalizeByFeatureScaling(List<double[]> dataset) {
+-        for (int colNum = 0; colNum < dataset.get(0).length; colNum++) {
+-            List<Double> column = new ArrayList<>();
+-            for (double[] row : dataset) {
+-                column.add(row[colNum]);
+-            }
+-            double maximum = Collections.max(column);
+-            double minimum = Collections.min(column);
+-            double difference = maximum - minimum;
+-            for (double[] row : dataset) {
+-                row[colNum] = (row[colNum] - minimum) / difference;
+-            }
+-        }
+-    }
+-    public static List<String[]> loadCSV(String filename) {
+-        try (InputStream inputStream = Util.class.getResourceAsStream(filename)) {
+-            InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+-            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+-            return bufferedReader.lines().map(line -> line.split(",")).collect(Collectors.toList());
+-        }
+-        catch (IOException e) {
+-            e.printStackTrace();
+-            throw new RuntimeException(e.getMessage(), e);
+-        }
+-    }
+-    public static double max(double[] numbers) {
+-        return Arrays.stream(numbers).max().orElse(Double.MIN_VALUE);
+-    }
+ }
++
++
++//    public static void normalizeByFeatureScaling(List<double[]> dataset) {
++//        for (int colNum = 0; colNum < dataset.get(0).length; colNum++) {
++//            List<Double> column = new ArrayList<>();
++//            for (double[] row : dataset) {
++//                column.add(row[colNum]);
++//            }
++//            double maximum = Collections.max(column);
++//            double minimum = Collections.min(column);
++//            double difference = maximum - minimum;
++//            for (double[] row : dataset) {
++//                row[colNum] = (row[colNum] - minimum) / difference;
++//            }
++//        }
++//    }
++//    public static List<String[]> loadCSV(String filename) {
++//        try (InputStream inputStream = Util.class.getResourceAsStream(filename)) {
++//            InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
++//            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
++//            return bufferedReader.lines().map(line -> line.split(",")).collect(Collectors.toList());
++//        }
++//        catch (IOException e) {
++//            e.printStackTrace();
++//            throw new RuntimeException(e.getMessage(), e);
++//        }
++//    }
++//    public static double max(double[] numbers) {
++//        return Arrays.stream(numbers).max().orElse(Double.MIN_VALUE);
++//    }
++//}
+Index: src/test/java/NeuronTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/test/java/NeuronTest.java b/src/test/java/NeuronTest.java
+new file mode 100644
+--- /dev/null	(date 1697393121702)
++++ b/src/test/java/NeuronTest.java	(date 1697393121702)
+@@ -0,0 +1,7 @@
++import org.junit.Test;
++
++public class NeuronTest {
++
++    @Test
++
++}
+Index: src/test/java/UtilTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/test/java/UtilTest.java b/src/test/java/UtilTest.java
+new file mode 100644
+--- /dev/null	(date 1697362780569)
++++ b/src/test/java/UtilTest.java	(date 1697362780569)
+@@ -0,0 +1,23 @@
++import org.junit.Assert;
++import org.junit.Test;
++
++public class UtilTest {
++
++    @Test
++    public void testSigmoid() {
++        double actual = Util.sigmoid(0.1);
++        double expected = 0.52497918747894;
++        Assert.assertEquals(actual, expected, 0.000001);
++
++
++    }
++
++    @Test
++    public void testDotProduct() {
++        double actual = Util.dotProduct(new double[]{1, 2, 3}, new double[]{4, 5, 6});
++        double expected = 32.0;
++        Assert.assertEquals(actual, expected, 0.0000001);
++
++    }
++
++}
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"30ffed03-07ef-48f3-b8f5-17d3f58b7fe7\" name=\"Changes\" comment=\"Initial commit\">\r\n      <change afterPath=\"$PROJECT_DIR$/.idea/uiDesigner.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/Network.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/Network.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/Util.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/Util.java\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"MarkdownSettingsMigration\">\r\n    <option name=\"stateVersion\" value=\"1\" />\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"2Wboy4Y0Bvqf9wMFvIET8jz8Qrz\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"RunOnceActivity.OpenProjectViewOnStart\": \"true\",\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"SHARE_PROJECT_CONFIGURATION_FILES\": \"true\",\r\n    \"WebServerToolWindowFactoryState\": \"false\",\r\n    \"project.structure.last.edited\": \"Modules\",\r\n    \"project.structure.proportion\": \"0.0\",\r\n    \"project.structure.side.proportion\": \"0.0\",\r\n    \"settings.editor.selected.configurable\": \"preferences.lookFeel\"\r\n  }\r\n}]]></component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"30ffed03-07ef-48f3-b8f5-17d3f58b7fe7\" name=\"Changes\" comment=\"\" />\r\n      <created>1697010894358</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1697010894358</updated>\r\n      <workItem from=\"1697010895848\" duration=\"1373000\" />\r\n      <workItem from=\"1697013699482\" duration=\"95000\" />\r\n      <workItem from=\"1697013817176\" duration=\"6088000\" />\r\n      <workItem from=\"1697127131821\" duration=\"1536000\" />\r\n      <workItem from=\"1697268043764\" duration=\"12000\" />\r\n      <workItem from=\"1697355871066\" duration=\"2807000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"Initial commit\">\r\n      <created>1697014130674</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1697014130674</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"2\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"Initial commit\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"Initial commit\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 141e1a1430d215032421b4de984dc535192f0978)
++++ b/.idea/workspace.xml	(date 1697393122264)
+@@ -5,9 +5,10 @@
+   </component>
+   <component name="ChangeListManager">
+     <list default="true" id="30ffed03-07ef-48f3-b8f5-17d3f58b7fe7" name="Changes" comment="Initial commit">
+-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/test/java/NeuronTest.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/test/java/UtilTest.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/Network.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Network.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/main/java/Util.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Util.java" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+@@ -36,16 +37,48 @@
+   </component>
+   <component name="PropertiesComponent"><![CDATA[{
+   "keyToString": {
++    "Downloaded.Files.Path.Enabled": "false",
++    "Repository.Attach.Annotations": "false",
++    "Repository.Attach.JavaDocs": "false",
++    "Repository.Attach.Sources": "false",
+     "RunOnceActivity.OpenProjectViewOnStart": "true",
+     "RunOnceActivity.ShowReadmeOnStart": "true",
+     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+     "WebServerToolWindowFactoryState": "false",
+     "project.structure.last.edited": "Modules",
+-    "project.structure.proportion": "0.0",
+-    "project.structure.side.proportion": "0.0",
++    "project.structure.proportion": "0.15",
++    "project.structure.side.proportion": "0.2",
+     "settings.editor.selected.configurable": "preferences.lookFeel"
+   }
+ }]]></component>
++  <component name="RunManager" selected="JUnit.UtilTest.testDotProduct">
++    <configuration name="UtilTest.testDotProduct" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
++      <module name="Introduction" />
++      <option name="PACKAGE_NAME" value="" />
++      <option name="MAIN_CLASS_NAME" value="UtilTest" />
++      <option name="METHOD_NAME" value="testDotProduct" />
++      <option name="TEST_OBJECT" value="method" />
++      <method v="2">
++        <option name="Make" enabled="true" />
++      </method>
++    </configuration>
++    <configuration name="UtilTest.testSigmoid" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
++      <module name="Introduction" />
++      <option name="PACKAGE_NAME" value="" />
++      <option name="MAIN_CLASS_NAME" value="UtilTest" />
++      <option name="METHOD_NAME" value="testSigmoid" />
++      <option name="TEST_OBJECT" value="method" />
++      <method v="2">
++        <option name="Make" enabled="true" />
++      </method>
++    </configuration>
++    <recent_temporary>
++      <list>
++        <item itemvalue="JUnit.UtilTest.testDotProduct" />
++        <item itemvalue="JUnit.UtilTest.testSigmoid" />
++      </list>
++    </recent_temporary>
++  </component>
+   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+   <component name="TaskManager">
+     <task active="true" id="Default" summary="Default task">
+@@ -59,7 +92,8 @@
+       <workItem from="1697013817176" duration="6088000" />
+       <workItem from="1697127131821" duration="1536000" />
+       <workItem from="1697268043764" duration="12000" />
+-      <workItem from="1697355871066" duration="2807000" />
++      <workItem from="1697355871066" duration="3874000" />
++      <workItem from="1697360836056" duration="2926000" />
+     </task>
+     <task id="LOCAL-00001" summary="Initial commit">
+       <created>1697014130674</created>
+@@ -68,7 +102,14 @@
+       <option name="project" value="LOCAL" />
+       <updated>1697014130674</updated>
+     </task>
+-    <option name="localTasksCounter" value="2" />
++    <task id="LOCAL-00002" summary="Initial commit">
++      <created>1697359492778</created>
++      <option name="number" value="00002" />
++      <option name="presentableId" value="LOCAL-00002" />
++      <option name="project" value="LOCAL" />
++      <updated>1697359492778</updated>
++    </task>
++    <option name="localTasksCounter" value="3" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
